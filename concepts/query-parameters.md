@@ -175,9 +175,11 @@ GET https://graph.microsoft.com/v1.0/users?$filter=imAddresses/any(s:s eq 'admin
 ```
 
 The **assignedLicenses** property of the user resource contains a collection of **assignedLicense** objects, a complex type with two properties, **skuId** and **disabledPlans**. The following query retrieves only users with an assigned license identified by the **skuId** `184efa21-98c3-4e5d-95ab-d07053a96e67`.
+Ensure to add count=true as parameter and ConsistencyLevel: eventual in the header as the query will fail otherwise if o many results are found.
 
 ```msgraph-interactive
-GET https://graph.microsoft.com/v1.0/users?$filter=assignedLicenses/any(s:s/skuId eq 184efa21-98c3-4e5d-95ab-d07053a96e67)
+GET https://graph.microsoft.com/v1.0/users?$filter=assignedLicenses/any(s:s/skuId eq 184efa21-98c3-4e5d-95ab-d07053a96e67))&$count=true
+Header ConsistencyLevel: eventual
 ```
 
 To negate the result of the expression inside the `any` clause, use the `not` operator, not the `ne` operator. For example, the following query retrieves only users who are not assigned the **imAddress** of `admin@contoso.com`.
