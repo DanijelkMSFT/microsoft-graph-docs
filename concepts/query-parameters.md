@@ -176,7 +176,7 @@ GET https://graph.microsoft.com/v1.0/users?$filter=imAddresses/any(s:s eq 'admin
 
 The **assignedLicenses** property of the user resource contains a collection of **assignedLicense** objects, a complex type with two properties, **skuId** and **disabledPlans**. The following query retrieves only users with an assigned license identified by the **skuId** `184efa21-98c3-4e5d-95ab-d07053a96e67`.
 
->**Note:** Be sure to add the `&$count=true` parameter and the `ConsistencyLevel: eventual` header. This is an advanced query and will fail if too many results are found.
+>**Note:** Be sure to add the `&$count=true` parameter and the `ConsistencyLevel: eventual` header. This is an [advanced query](/graph/aad-advanced-queries) and will fail if too many results are found.
 
 ```msgraph-interactive
 GET https://graph.microsoft.com/v1.0/users?$filter=assignedLicenses/any(s:s/skuId eq 184efa21-98c3-4e5d-95ab-d07053a96e67))&$count=true
